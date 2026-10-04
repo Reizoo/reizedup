@@ -1,4 +1,3 @@
-// Tilts the card a little towards the mouse. Desktop only.
 const MAX_DEG = 4;
 
 export function setupTilt() {

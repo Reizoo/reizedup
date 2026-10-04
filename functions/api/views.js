@@ -1,7 +1,3 @@
-// POST /api/views: counts a visit and returns the total, as { views: number }.
-// Each browser is counted once a day (the "seen" cookie lasts 24 hours).
-// The total lives in the VIEWS KV namespace under the key "total".
-
 const KEY = "total";
 const SEEN_COOKIE = "seen=1";
 const ONE_DAY = 60 * 60 * 24;

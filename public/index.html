@@ -24,13 +24,11 @@
   <script type="module" src="/js/main.js"></script>
 </head>
 <body>
-  <!-- Background layers -->
   <video id="bg" src="/media/bg.mp4" poster="/media/poster.jpg" autoplay muted loop playsinline preload="auto"></video>
   <div class="shade"></div>
   <canvas id="snow"></canvas>
   <audio id="song" src="/media/song.mp3" loop preload="none"></audio>
 
-  <!-- "Click to enter" screen. Browsers only allow music after a click. -->
   <div id="enter" role="button" tabindex="0" aria-label="Enter">
     <span>click to enter...</span>
   </div>
@@ -50,7 +48,6 @@
       <p class="typed" id="typed"></p>
       <span class="location">⌖ Kursk Psychiatric Hospital</span>
 
-      <!-- Filled from js/config.js -->
       <nav class="socials" id="socials" aria-label="Social"></nav>
       <div class="links" id="links"></div>
 

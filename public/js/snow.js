@@ -1,5 +1,3 @@
-// Falling snow on a full-screen canvas.
-// Flake positions are stored from 0 to 1, so resizing the window doesn't move them around.
 const MAX_FLAKES = 140;
 
 export function startSnow() {
@@ -20,7 +18,7 @@ export function startSnow() {
     for (const flake of flakes) {
       flake.y += flake.speed;
       flake.phase += 0.01;
-      flake.x += Math.sin(flake.phase) * 0.0004; // gentle side-to-side drift
+      flake.x += Math.sin(flake.phase) * 0.0004;
       if (flake.y > 1) Object.assign(flake, newFlake(), { y: -0.02 });
 
       ctx.beginPath();

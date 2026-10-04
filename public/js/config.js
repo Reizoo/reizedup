@@ -1,9 +1,5 @@
-// Everything you'd want to change on the page lives here.
-
-// Icons come from Simple Icons: https://simpleicons.org (use the slug, e.g. "telegram").
 export const ICON_CDN = "https://cdn.jsdelivr.net/npm/simple-icons@13/icons";
 
-// Round icons under the name. Use `href` for a link, or `copy` to copy text on click.
 export const socials = [
   { title: "Telegram", icon: "telegram", href: "https://t.me/reizedup" },
   { title: "Discord: god2save", icon: "discord", copy: "god2save" },
@@ -12,7 +8,6 @@ export const socials = [
   { title: "VK", icon: "vk", href: "https://vk.com/gotmyselfback" },
 ];
 
-// Big buttons in the list. Same rule: `href` opens a link, `copy` copies text.
 export const links = [
   { label: "Channel", hint: "@reikoks", icon: "telegram", href: "https://t.me/reikoks" },
   { label: "Bio", hint: "@userlog_exe", icon: "telegram", href: "https://t.me/userlog_exe" },
@@ -21,7 +16,6 @@ export const links = [
   { label: "GitHub", hint: "Reizoo", icon: "github", href: "https://github.com/Reizoo" },
 ];
 
-// Status lines typed one after another under the name.
 export const statusLines = [
   "last seen: probably awake",
   "currently: building something",
@@ -31,16 +25,13 @@ export const statusLines = [
   "loading personality…",
 ];
 
-// Typing speed, in milliseconds.
 export const typing = {
-  perChar: 115,     // typing one character
-  hold: 2800,       // pause on a full line
-  perDelete: 55,    // erasing one character
-  gap: 600,         // pause before the next line
+  perChar: 115,
+  hold: 2800,
+  perDelete: 55,
+  gap: 600,
 };
 
-// Clock in the footer. Only the time is shown, never the place.
 export const timeZone = "Europe/London";
 
-// Music volume after clicking in, from 0 to 1.
 export const musicVolume = 0.35;

@@ -1,4 +1,3 @@
-// Entry point: wires every part of the page together.
 import { renderLinks } from "./links.js";
 import { setupEnter } from "./enter.js";
 import { startTypewriter } from "./typewriter.js";
@@ -12,5 +11,4 @@ setupTilt();
 startClock();
 loadViews();
 
-// The status line starts typing once the visitor clicks in.
 setupEnter(startTypewriter);

@@ -1,10 +1,8 @@
-// Builds the social icons and the link list from config.js.
 import { ICON_CDN, socials, links } from "./config.js";
 import { showToast } from "./toast.js";
 
 const iconUrl = (slug) => `${ICON_CDN}/${slug}.svg`;
 
-// An item with `href` becomes a link; an item with `copy` becomes a button.
 function createItem(item, { title, alt = "" }) {
   const el = document.createElement(item.href ? "a" : "button");
   if (item.href) {
@@ -43,7 +41,6 @@ async function copyText(text) {
     await navigator.clipboard.writeText(text);
     showToast(`copied: ${text}`);
   } catch {
-    // Clipboard can be blocked (old browsers, http): show the text instead.
     showToast(`discord: ${text}`);
   }
 }

@@ -1,4 +1,3 @@
-// Types the status lines one by one, erases each, and loops forever.
 import { statusLines, typing } from "./config.js";
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

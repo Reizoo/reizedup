@@ -1,4 +1,3 @@
-// Sends www.reizedup.cc to reizedup.cc, keeping the path.
 const CANONICAL_HOST = "reizedup.cc";
 
 export async function onRequest({ request, next }) {

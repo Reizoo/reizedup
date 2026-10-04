@@ -1,5 +1,3 @@
-/* Views, clock and mute button under the links, plus the "copied" toast */
-
 .footer {
   display: flex;
   justify-content: space-between;

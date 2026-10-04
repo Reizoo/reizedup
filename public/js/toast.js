@@ -1,4 +1,3 @@
-// Small message at the bottom of the screen ("copied: god2save").
 const SHOW_MS = 1800;
 let hideTimer;
 

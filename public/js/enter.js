@@ -1,5 +1,3 @@
-// "Click to enter" screen and the music.
-// Browsers block sound until the visitor interacts, so the song starts on that click.
 import { musicVolume } from "./config.js";
 
 export function setupEnter(onEnter) {
