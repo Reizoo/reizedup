@@ -32,6 +32,7 @@ body.in .card{opacity:1;transform:none}
 h1{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:30px;font-weight:700;letter-spacing:-.02em;text-shadow:0 0 18px rgba(255,255,255,.35)}
 .name-row{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:14px}
 .name-row h1{margin-top:0}
+.badge-row{display:flex;justify-content:center;margin-top:8px}
 .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:7px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.04em;color:#fff;box-shadow:0 0 14px rgba(255,255,255,.15)}
 .status{height:34px;width:auto;filter:drop-shadow(0 0 8px rgba(140,150,255,.45));animation:float 3.2s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-3px) rotate(-2deg)}}
@@ -70,7 +71,8 @@ h1{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:30px
 <main>
   <section class="card" id="card">
     <img class="ava" src="/media/avatar.webp" alt="reizoo avatar" width="104" height="104">
-    <div class="name-row"><h1>reizoo</h1><span class="badge" title="developer">&lt;/&gt; dev</span><img class="status" src="/media/status.webp" alt="" title="status"></div>
+    <div class="name-row"><h1>reizoo</h1><img class="status" src="/media/status.webp" alt="" title="status"></div>
+    <div class="badge-row"><span class="badge" title="developer">&lt;/&gt; dev</span></div>
     <p class="type" id="type"></p>
     <span class="loc">⌖ Kursk Psychiatric Hospital</span>
 
