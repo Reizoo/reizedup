@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>reizoo</title>
+<meta name="description" content="reizoo: links">
+<meta property="og:title" content="reizoo">
+<meta property="og:description" content="links">
+<meta property="og:image" content="https://reizedup.cc/media/avatar.webp">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" href="/media/avatar.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--fg:#f2f2f2;--dim:#a3a3a3;--line:rgba(255,255,255,.12);--glass:rgba(12,12,14,.42)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#0b0b0c;color:var(--fg);font-family:Inter,system-ui,sans-serif;overflow:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.75);z-index:0}
+.shade{position:fixed;inset:0;background:radial-gradient(ellipse at center,rgba(0,0,0,.15) 0%,rgba(0,0,0,.65) 75%);z-index:1}
+#snow{position:fixed;inset:0;z-index:2;pointer-events:none}
+#enter{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:rgba(5,5,6,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);cursor:pointer;transition:opacity .8s ease}
+#enter span{font-family:"JetBrains Mono",monospace;font-size:15px;letter-spacing:.08em;color:#ddd;animation:pulse 2.2s ease-in-out infinite}
+#enter.gone{opacity:0;pointer-events:none}
+@keyframes pulse{50%{opacity:.35}}
+main{position:relative;z-index:3;height:100%;display:grid;place-items:center;padding:20px}
+.card{width:min(420px,100%);padding:30px 26px 22px;border:1px solid var(--line);border-radius:22px;background:var(--glass);backdrop-filter:blur(10px) saturate(.6);-webkit-backdrop-filter:blur(10px) saturate(.6);box-shadow:0 30px 80px rgba(0,0,0,.55);text-align:center;opacity:0;transform:translateY(14px) scale(.98);transition:opacity .9s ease .15s,transform .9s ease .15s}
+body.in .card{opacity:1;transform:none}
+.card{transform-style:preserve-3d;will-change:transform}
+.ava{width:104px;height:104px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.75);box-shadow:0 0 0 6px rgba(255,255,255,.05),0 0 40px rgba(255,255,255,.18);filter:grayscale(.15)}
+h1{margin-top:14px;font-size:30px;font-weight:700;letter-spacing:-.02em;text-shadow:0 0 18px rgba(255,255,255,.35)}
+.type{margin-top:6px;height:20px;font-family:"JetBrains Mono",monospace;font-size:13.5px;color:var(--dim)}
+.type::after{content:"_";animation:blink 1s steps(1) infinite;margin-left:1px}
+@keyframes blink{50%{opacity:0}}
+.loc{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:5px 11px;border:1px solid var(--line);border-radius:99px;font-size:12px;color:#cfcfcf;background:rgba(255,255,255,.04)}
+.icons{display:flex;justify-content:center;gap:14px;margin-top:18px}
+.icons a,.icons button{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;border:1px solid transparent;background:none;cursor:pointer;transition:transform .2s,background .2s,border-color .2s;position:relative}
+.icons img{width:21px;height:21px;filter:invert(1) drop-shadow(0 0 6px rgba(255,255,255,.45))}
+.icons a:hover,.icons button:hover{transform:translateY(-3px);background:rgba(255,255,255,.07);border-color:var(--line)}
+.links{display:grid;gap:9px;margin-top:20px;text-align:left}
+.links a,.links button{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.035);color:var(--fg);text-decoration:none;font:inherit;font-size:14.5px;cursor:pointer;transition:background .2s,transform .2s,border-color .2s}
+.links a:hover,.links button:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25);transform:translateX(3px)}
+.links img{width:19px;height:19px;filter:invert(1);opacity:.9}
+.links b{font-weight:500}
+.links small{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim)}
+.foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:#8a8a8a}
+.foot button{background:none;border:none;color:#8a8a8a;cursor:pointer;font:inherit;display:flex;align-items:center;gap:6px}
+.foot button:hover{color:#ddd}
+.toast{position:fixed;left:50%;bottom:28px;z-index:30;transform:translate(-50%,20px);opacity:0;padding:9px 14px;border-radius:10px;background:rgba(20,20,22,.9);border:1px solid var(--line);font-family:"JetBrains Mono",monospace;font-size:12.5px;transition:.3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){#snow{display:none}.card{transition:none}}
+@media (max-width:420px){.card{padding:26px 18px 18px}h1{font-size:26px}}
+</style>
+</head>
+<body>
+<video id="bg" src="/media/bg.mp4" poster="/media/poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+<div class="shade"></div>
+<canvas id="snow"></canvas>
+<audio id="song" src="/media/song.mp3" loop preload="none"></audio>
+
+<div id="enter" role="button" tabindex="0" aria-label="Enter"><span>click to enter...</span></div>
+
+<main>
+  <section class="card" id="card">
+    <img class="ava" src="/media/avatar.webp" alt="reizoo avatar" width="104" height="104">
+    <h1>reizoo</h1>
+    <p class="type" id="type"></p>
+    <span class="loc">⌖ Kursk Psychiatric Hospital</span>
+
+    <nav class="icons" aria-label="Social">
+      <a href="https://t.me/reizedup" target="_blank" rel="noopener" title="Telegram"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/telegram.svg" alt="Telegram"></a>
+      <button type="button" data-copy="god2save" title="Discord: god2save"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/discord.svg" alt="Discord"></button>
+      <a href="https://github.com/Reizoo" target="_blank" rel="noopener" title="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/github.svg" alt="GitHub"></a>
+      <a href="https://steamcommunity.com/id/reizedup" target="_blank" rel="noopener" title="Steam"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/steam.svg" alt="Steam"></a>
+      <a href="https://vk.com/gotmyselfback" target="_blank" rel="noopener" title="VK"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/vk.svg" alt="VK"></a>
+    </nav>
+
+    <div class="links">
+      <a href="https://t.me/reikoks" target="_blank" rel="noopener"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/telegram.svg" alt=""><b>Channel</b><small>@reikoks</small></a>
+      <a href="https://t.me/userlog_exe" target="_blank" rel="noopener"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/telegram.svg" alt=""><b>Bio</b><small>@userlog_exe</small></a>
+      <a href="https://t.me/reizedup" target="_blank" rel="noopener"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/telegram.svg" alt=""><b>DM me</b><small>@reizedup</small></a>
+      <button type="button" data-copy="god2save"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/discord.svg" alt=""><b>Discord</b><small>god2save · copy</small></button>
+      <a href="https://github.com/Reizoo" target="_blank" rel="noopener"><img src="https://cdn.jsdelivr.net/npm/simple-icons@13/icons/github.svg" alt=""><b>GitHub</b><small>Reizoo</small></a>
+    </div>
+
+    <div class="foot">
+      <span id="views">◉ — views</span>
+      <button type="button" id="mute" aria-label="Mute music">♪ <span>on</span></button>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(() => {
+  const enter = document.getElementById('enter'), song = document.getElementById('song'), mute = document.getElementById('mute');
+  let entered = false;
+  function go() {
+    if (entered) return; entered = true;
+    enter.classList.add('gone'); document.body.classList.add('in');
+    song.volume = 0.35; song.play().catch(() => {}); typeLoop();
+  }
+  enter.addEventListener('click', go);
+  enter.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') go(); });
+  mute.addEventListener('click', () => { song.muted = !song.muted; mute.querySelector('span').textContent = song.muted ? 'off' : 'on'; if (!song.muted && song.paused) song.play().catch(()=>{}); });
+
+  // typewriter
+  const lines = ['reizedup', 'websites · bots · tools', 'last seen: probably awake', '?'];
+  const el = document.getElementById('type'); let li = 0;
+  async function typeLoop() {
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    for (;;) {
+      const t = lines[li++ % lines.length];
+      for (let i = 1; i <= t.length; i++) { el.textContent = t.slice(0, i); await wait(70); }
+      await wait(1800);
+      for (let i = t.length; i >= 0; i--) { el.textContent = t.slice(0, i); await wait(35); }
+      await wait(350);
+    }
+  }
+
+  // copy discord
+  const toast = document.getElementById('toast');
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); toast.textContent = 'copied: ' + b.dataset.copy; }
+    catch { toast.textContent = 'discord: ' + b.dataset.copy; }
+    toast.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(() => toast.classList.remove('show'), 1800);
+  }));
+
+  // card tilt
+  const card = document.getElementById('card');
+  if (matchMedia('(hover:hover)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+    addEventListener('mousemove', e => {
+      if (!entered) return;
+      const x = (e.clientX / innerWidth - .5) * 8, y = (e.clientY / innerHeight - .5) * -8;
+      card.style.transform = `perspective(900px) rotateY(${x}deg) rotateX(${y}deg)`;
+    });
+  }
+
+  // snow
+  const c = document.getElementById('snow'), x = c.getContext('2d'); let W, H, flakes = [];
+  function size() { W = c.width = innerWidth * devicePixelRatio; H = c.height = innerHeight * devicePixelRatio; }
+  size(); addEventListener('resize', size);
+  const N = Math.min(140, Math.round(innerWidth / 10));
+  for (let i = 0; i < N; i++) flakes.push({ x: Math.random(), y: Math.random(), r: Math.random() * 1.8 + .4, s: Math.random() * .0009 + .0004, d: Math.random() * Math.PI * 2 });
+  (function tick() {
+    x.clearRect(0, 0, W, H); x.fillStyle = 'rgba(255,255,255,.75)';
+    for (const f of flakes) {
+      f.y += f.s; f.d += .01; f.x += Math.sin(f.d) * .0004;
+      if (f.y > 1) { f.y = -.02; f.x = Math.random(); }
+      x.beginPath(); x.arc(f.x * W, f.y * H, f.r * devicePixelRatio, 0, 7); x.fill();
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  // views
+  fetch('/api/views', { method: 'POST' }).then(r => r.json()).then(d => {
+    document.getElementById('views').textContent = '◉ ' + Number(d.views).toLocaleString('en') + ' views';
+  }).catch(() => {});
+})();
+</script>
+</body>
+</html>

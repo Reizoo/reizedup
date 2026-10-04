@@ -1,0 +1,7 @@
+name = "reizedup"
+pages_build_output_dir = "public"
+compatibility_date = "2026-09-01"
+
+[[kv_namespaces]]
+binding = "VIEWS"
+id = "fb6b49459742416e80c2de9afce87331"
