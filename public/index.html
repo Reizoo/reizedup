@@ -29,7 +29,12 @@ main{position:relative;z-index:3;height:100%;display:grid;place-items:center;pad
 body.in .card{opacity:1;transform:none}
 .card{transform-style:preserve-3d;will-change:transform}
 .ava{width:104px;height:104px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.75);box-shadow:0 0 0 6px rgba(255,255,255,.05),0 0 40px rgba(255,255,255,.18);filter:grayscale(.15)}
-h1{margin-top:14px;font-size:30px;font-weight:700;letter-spacing:-.02em;text-shadow:0 0 18px rgba(255,255,255,.35)}
+h1{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:30px;font-weight:700;letter-spacing:-.02em;text-shadow:0 0 18px rgba(255,255,255,.35)}
+.name-row{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:14px}
+.name-row h1{margin-top:0}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:7px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.04em;color:#fff;box-shadow:0 0 14px rgba(255,255,255,.15)}
+.status{height:34px;width:auto;filter:drop-shadow(0 0 8px rgba(140,150,255,.45));animation:float 3.2s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-3px) rotate(-2deg)}}
 .type{margin-top:6px;height:20px;font-family:"JetBrains Mono",monospace;font-size:13.5px;color:var(--dim)}
 .type::after{content:"_";animation:blink 1s steps(1) infinite;margin-left:1px}
 @keyframes blink{50%{opacity:0}}
@@ -65,7 +70,7 @@ h1{margin-top:14px;font-size:30px;font-weight:700;letter-spacing:-.02em;text-sha
 <main>
   <section class="card" id="card">
     <img class="ava" src="/media/avatar.webp" alt="reizoo avatar" width="104" height="104">
-    <h1>reizoo</h1>
+    <div class="name-row"><h1>reizoo</h1><span class="badge" title="developer">&lt;/&gt; dev</span><img class="status" src="/media/status.png" alt="" title="status"></div>
     <p class="type" id="type"></p>
     <span class="loc">⌖ Kursk Psychiatric Hospital</span>
 
@@ -87,6 +92,7 @@ h1{margin-top:14px;font-size:30px;font-weight:700;letter-spacing:-.02em;text-sha
 
     <div class="foot">
       <span id="views">◉ — views</span>
+      <span id="clock" title="my local time">◷ --:--</span>
       <button type="button" id="mute" aria-label="Mute music">♪ <span>on</span></button>
     </div>
   </section>
@@ -107,7 +113,7 @@ h1{margin-top:14px;font-size:30px;font-weight:700;letter-spacing:-.02em;text-sha
   mute.addEventListener('click', () => { song.muted = !song.muted; mute.querySelector('span').textContent = song.muted ? 'off' : 'on'; if (!song.muted && song.paused) song.play().catch(()=>{}); });
 
   // typewriter
-  const lines = ['reizedup', 'websites · bots · tools', 'last seen: probably awake', '?'];
+  const lines = ["last seen: probably awake", "currently: building something", "don't dm me \"hi\"", "if it works, don't touch it", "sleep is a suggestion", "loading personality…"];
   const el = document.getElementById('type'); let li = 0;
   async function typeLoop() {
     const wait = ms => new Promise(r => setTimeout(r, ms));
@@ -153,6 +159,11 @@ h1{margin-top:14px;font-size:30px;font-weight:700;letter-spacing:-.02em;text-sha
     }
     requestAnimationFrame(tick);
   })();
+
+  // local time (Europe/London, no place shown)
+  const clock = document.getElementById('clock');
+  function tickClock() { clock.textContent = '◷ ' + new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' }).format(new Date()); }
+  tickClock(); setInterval(tickClock, 15000);
 
   // views
   fetch('/api/views', { method: 'POST' }).then(r => r.json()).then(d => {
