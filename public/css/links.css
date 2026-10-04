@@ -1,0 +1,85 @@
+/* Row of social icons and the list of links */
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.socials a,
+.socials button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: none;
+  cursor: pointer;
+  transition: transform .2s, background .2s, border-color .2s;
+}
+
+.socials a:hover,
+.socials button:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, .07);
+  border-color: var(--line);
+}
+
+.socials img {
+  width: 21px;
+  height: 21px;
+  filter: invert(1) drop-shadow(0 0 6px rgba(255, 255, 255, .45));
+}
+
+.links {
+  display: grid;
+  gap: 9px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.links a,
+.links button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .035);
+  color: var(--fg);
+  font: inherit;
+  font-size: 14.5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s, transform .2s, border-color .2s;
+}
+
+.links a:hover,
+.links button:hover {
+  transform: translateX(3px);
+  background: rgba(255, 255, 255, .08);
+  border-color: rgba(255, 255, 255, .25);
+}
+
+.links img {
+  width: 19px;
+  height: 19px;
+  filter: invert(1);
+  opacity: .9;
+}
+
+.links b {
+  font-weight: 500;
+}
+
+.links small {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--dim);
+}
