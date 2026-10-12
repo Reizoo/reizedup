@@ -23,6 +23,7 @@ export const statusLines = [
   "if it works, don't touch it",
   "sleep is a suggestion",
   "loading personality…",
+  "во мне все семь смертных грехов",
 ];
 
 export const typing = {
