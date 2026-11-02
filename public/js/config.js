@@ -9,7 +9,7 @@ export const socials = [
 ];
 
 export const links = [
-  { label: "Channel", hint: "@reikoks", icon: "telegram", href: "https://t.me/reikoks" },
+  { label: "Channel", hint: "@reizoo", icon: "telegram", href: "https://t.me/reizoo" },
   { label: "Bio", hint: "@userlog_exe", icon: "telegram", href: "https://t.me/userlog_exe" },
   { label: "DM me", hint: "@reizedup", icon: "telegram", href: "https://t.me/reizedup" },
   { label: "Discord", hint: "god2save · copy", icon: "discord", copy: "god2save" },
